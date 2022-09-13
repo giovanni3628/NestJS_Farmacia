@@ -2,8 +2,8 @@ import { IsNotEmpty, MaxLength } from "class-validator";
 import { Categoria } from "src/categoria/entities/categoria.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({name: 'tb_tarefa'})
-export class Tarefa{
+@Entity({name: 'tb_produto'})
+export class Produto{
 
     @PrimaryGeneratedColumn()
     id: number
@@ -19,17 +19,22 @@ export class Tarefa{
     descricao: string
 
     @IsNotEmpty()
+    @Column({nullable: false})
+    quantidade: number
+
+    @IsNotEmpty()
     @MaxLength(50)
     @Column({nullable: false, length: 50})
-    responsavel: string
+    laboratorio: string
+
+    @IsNotEmpty()
+    @Column({nullable: false})
+    preco: number
 
     @Column()
-    date: Date
+    foto: string
 
-    @Column()
-    status: Boolean
-
-    @ManyToOne(() => Categoria, (categoria) => categoria.tarefas, {
+    @ManyToOne(() => Categoria, (categoria) => categoria.produto, {
         onDelete: "CASCADE"
     })
     categoria: Categoria

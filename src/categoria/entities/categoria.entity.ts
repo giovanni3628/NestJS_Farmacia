@@ -1,5 +1,5 @@
 import { IsNotEmpty, MaxLength } from "class-validator";
-import { Tarefa } from "src/tarefa/entities/tarefa.entity";
+import { Produto } from "src/produtos/entities/produto.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('tb_categoria')
@@ -9,10 +9,15 @@ export class Categoria{
     id: number
 
     @IsNotEmpty()
+    @MaxLength(50)
+    @Column({nullable: false, length: 50})
+    nome: string
+
+    @IsNotEmpty()
     @MaxLength(255)
     @Column({nullable: false, length: 255})
     descricao: string
 
-    @OneToMany(() => Tarefa, (tarefa) => tarefa.categoria)
-    tarefas: Tarefa[]
+    @OneToMany(() => Produto, (produto) => produto.categoria)
+    produto: Produto[]
 }

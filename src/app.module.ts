@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Categoria } from './categoria/entities/categoria.entity';
 import { CategoriaModule } from './categoria/modules/categoria.module';
-import { Tarefa } from './tarefa/entities/tarefa.entity';
-import { TarefaModule } from './tarefa/modules/tarefa.module';
+import { Produto } from './produtos/entities/produto.entity';
+import { ProdutoModule } from './produtos/modules/produto.module';
 
 @Module({
   imports: [
@@ -13,11 +13,11 @@ import { TarefaModule } from './tarefa/modules/tarefa.module';
       port: 3306,
       username: 'root',
       password: '@Logitech1',
-      database: 'db_todolist',
-      entities: [Tarefa, Categoria],
+      database: 'db_farmacia',
+      entities: [Produto, Categoria],
       synchronize: true
     }),
-    TarefaModule,
+    ProdutoModule,
     CategoriaModule
   ],
   controllers: [],
